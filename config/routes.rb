@@ -16,6 +16,7 @@ RoR::Application.routes.draw do
   match '/logout', :to => 'session#destroy'
 
   match "helper/number_selection" => "standards#number_selection"
+  match "helper/take_several_patterns" => "standards#take_several_standards", as: :take_several_patterns
   match "helper/take_pattern" => "standards#take_pattern"
   match "pdf/:id" => "standards#pdf", as: :pdf
 

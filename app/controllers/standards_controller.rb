@@ -1,4 +1,4 @@
-# coding: utf-8
+#coding: utf-8
 class StandardsController < ApplicationController
   before_filter :authenticate
 
@@ -49,6 +49,7 @@ class StandardsController < ApplicationController
     if @children
       @children = Standard.sort_it(@children)
     end
+
   end
 
   def destroy
@@ -89,13 +90,37 @@ class StandardsController < ApplicationController
     redirect_to standards_path, flash: { success: "Шаблон принят" }
   end
 
-  def pdf
-    arr = params[:id].split('-')
-    @all = Standard.where(user_id: current_user.id, id: arr)
-    respond_to do |format|
-      format.html {redirect_to standards_path }
-      format.pdf
+  def take_several_standards
+    num = Standard.where(user_id: current_user, parent_id: nil).last.number
+    dict = Hash.new
+    pattern = Standard.find_all_by_super_admin
+    pattern.each do |one|
+      new = one.dup
+      new.user_id = current_user.id
+      new.number += num unless one.parent_id
+      new.save
+      dict[one.id] = new.id
     end
+    #сопоставление всех родительских айдишек
+    own = Standard.find_all_by_user_id(current_user)
+    own.each do |one|
+      if (!one.parent_id.blank?)
+        one.update_attribute(:parent_id, dict[one.parent_id])
+      end
+    end
+    redirect_to standards_path, flash: { success: "Шаблон добавлен" }
+  end
+
+  def pdf
+    #arr = params[:id].split('-')
+    #@all = Standard.where(user_id: current_user.id, id: arr)
+    #respond_to do |format|
+    #  format.html {redirect_to standards_path }
+    #  format.pdf
+    #end
+
+    pdf = PDFKit.new(standards_url)
+    send_data(pdf.to_pdf)
   end
 
   private

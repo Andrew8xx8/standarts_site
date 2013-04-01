@@ -4,6 +4,7 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
+    #Time.zone = "Moscow"
     @news = News.all
 
     respond_to do |format|

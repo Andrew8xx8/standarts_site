@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   I18n.default_locale = :ru
   I18n.locale = :ru
+  Time.zone = "Moscow"
 
   private
   def update_session_history

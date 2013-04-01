@@ -191,38 +191,6 @@ a:hover
 {
     display: inline;
 }
-
-/*#content table*/
-/*{*/
-    /*border: dotted 1px #cacaca;*/
-    /*padding: 0.5em;*/
-    /*margin-bottom: 1.5em;*/
-/*}*/
-
-/*#content table th*/
-/*{*/
-    /*text-align: left;*/
-    /*font-weight: bold;*/
-    /*padding: 0.5em;*/
-/*}*/
-
-/*#content table td*/
-/*{*/
-    /*padding: 0.5em;*/
-/*}*/
-
-/*#content table tr.rowA*/
-/*{*/
-    /*background-color: #f5f5f5;*/
-    /*color: inherit;*/
-/*}*/
-
-/*#content table tr.rowB*/
-/*{*/
-    /*background-color: #fdfdfd;*/
-    /*color: inherit;*/
-/*}*/
-
 /* Primary Content */
 
 #primaryContentContainer
@@ -281,4 +249,25 @@ a:hover
 .clear
 {
     clear: both;
+}
+
+@media print {
+    body {
+        background-color: #FFF;
+    }
+
+    #container {
+        width: auto;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    #line_items {
+        page-break-before: always;
+    }
+
+    #pdf_link {
+        display: none;
+    }
 }

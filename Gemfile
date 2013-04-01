@@ -28,8 +28,8 @@ gem 'aws-sdk'
 gem 'jquery-rails'
 gem 'email_validator'
 
-gem 'prawn'
-gem 'prawn_rails'
+gem 'wkhtmltopdf-binary'
+gem 'pdfkit'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

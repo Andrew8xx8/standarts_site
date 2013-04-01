@@ -21,6 +21,7 @@ class DraftsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @draft }
+      format.pdf
     end
   end
 

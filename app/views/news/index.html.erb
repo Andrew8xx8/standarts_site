@@ -5,7 +5,7 @@
           <tr>
             <td>
               <text class="title"><%= link_to one.title, one %></text> &nbsp;
-              <em><%= (l one.created_at.getlocal, format: "%d %B в %R") if one.created_at %></em>
+              <em><%= (l one.created_at, format: "%d %B в %R") if one.created_at %></em>
               <p style="margin-bottom: 12px;"></p>
               <%= one.content.html_safe %>
             </td>
